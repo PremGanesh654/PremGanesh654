@@ -7,6 +7,7 @@ enum 50400 ColourForNumbers
         Caption = 'None';
     }
     value(1; "1")
+    
     {
         Caption = 'Ambiguous';
     }
