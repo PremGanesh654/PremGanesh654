@@ -3,9 +3,9 @@ pageextension 50400 CustomerLedgerEntries extends "Customer Ledger Entries"
     layout
     {
 
-        addbefore("Due Date")
+        addafter("Due Date")
         {
-            field(NumberOfDaysExpired; Rec.NumberOfDaysExpired)
+            field(NumberOfDaysExpired; NumberOfDaysExpired)
             {
                 ApplicationArea = All;
                 Editable = false;
@@ -22,22 +22,23 @@ pageextension 50400 CustomerLedgerEntries extends "Customer Ledger Entries"
         {
             view("Open Entries")
             {
-Caption = 'Open Entries';
-OrderBy = ascending("Due Date");
-Filters = where(Open = const(true));
-SharedLayout = false;
-layout{
-    movefirst(Control1; NumberOfDaysExpired)
-    moveafter(NumberOfDaysExpired; "Due Date")
-}
+                Caption = 'Open Entries';
+                OrderBy = ascending("Due Date");
+                Filters = where(Open = const(true));
+                SharedLayout = false;
+                layout
+                {
+                    movefirst(Control1; NumberOfDaysExpired)
+                    moveafter(NumberOfDaysExpired; "Due Date")
+                }
             }
         }
     }
     trigger OnOpenPage()
     var
-        myInt: Integer;
+        ThresholdSet: Record ThresholdSetupTable;
     begin
-        if not ThresholdSetup.Get() then begin
+        if not ThresholdSet.Get() then begin
             ShowThresholdSetupNotification();
             CurrPage.Update();
 
@@ -46,8 +47,7 @@ layout{
     end;
 
     trigger OnAfterGetRecord()
-    var
-        Customer: Record "Cust. Ledger Entry";
+
     begin
         NumberOfDaysExpired := rec.GetNumberDaysExpired();
         case NumberOfDaysExpired of
@@ -64,8 +64,8 @@ layout{
     procedure ShowThresholdSetupNotification()
     var
         ThresholdSetupNotification: Notification;
-        message : Label'You need to run the Threshold Setup:';
-        message2 : Label'Click here to run the ThresholdSetup';
+        message: Label 'You need to run the Threshold Setup:';
+        message2: Label 'Click here to run the ThresholdSetup';
     begin
         ThresholdSetupNotification.Message(message);
         ThresholdSetupNotification.AddAction(message2, Codeunit::ThresholdSetupManagement, 'RunThresholdsetup');

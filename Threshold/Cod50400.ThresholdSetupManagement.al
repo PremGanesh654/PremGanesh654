@@ -1,6 +1,6 @@
 codeunit 50400 ThresholdSetupManagement
 {
-    procedure RunThresholdSetup(ThresholdSetupNotification: Notification)
+    procedure RunThresholdSetup(var ThresholdSetupNotification: Notification)
     var
         ThresholdSetupPage: page ThresholdSetupPage;
 

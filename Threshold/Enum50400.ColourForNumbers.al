@@ -9,10 +9,10 @@ enum 50400 ColourForNumbers
     value(1; "1")
     
     {
-        Caption = 'Ambiguous';
+        Caption = 'ambiguous';
     }
     value(2; "2")
     {
-        Caption = 'Attention';
+        Caption = 'attention';
     }
 }

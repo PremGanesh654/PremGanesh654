@@ -38,10 +38,8 @@ page 50400 ThresholdSetupPage
     }
     trigger OnOpenPage()
     var
-        setup: Record ThresholdSetupTable;
-        notification: Notification;
+        myInt: Integer;
     begin
-
+        // if not get
     end;
-
 }

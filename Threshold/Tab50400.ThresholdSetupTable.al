@@ -27,11 +27,11 @@ table 50400 ThresholdSetupTable
             Caption = 'Threshold 2 Style';
         }
     }
-    keys
-    {
-        key(PK; PrimaryKey)
-        {
-            Clustered = true;
-        }
-    }
+    // keys
+    // {
+    //     key(PK; PrimaryKey)
+    //     {
+    //         Clustered = true;
+    //     }
+    // }
 }
